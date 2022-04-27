@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{tarefasController.filterTarefas(tarefa.filtro_campo, tarefa.filtro_valor)}" />
+</f:metadata>
+
+	<style>
+		* {
+			margin: 0;
+    		padding: 0;
+   			box-sizing: border-box;
+    		outline: 0;
+		}
+		
+		body {
+			background-image: linear-gradient(to right top, #0b4b90, #0065a0, #007a93, #008a70, #389644);
+		    background-attachment: fixed;
+		    background-size: cover;
+		}
+		
+		.container {
+		    max-width: 100rem;
+		    margin: 2rem auto;
+		    background-color: whitesmoke;
+		    padding: 2rem;
+		    border-radius: 1rem;
+		}
+		
+		.form input, .form label {
+		    margin: 0.5rem 0;
+		    display: block;
+		    width: 100%;
+		}
+		
+		.form label {
+		    font-size: 1.2rem;
+		}
+		
+		.back-button {
+		    width: 30%;
+		    height: 2rem;
+		    margin-bottom: 1rem;
+		    cursor: pointer;
+		    font-size: 1rem;
+
+		}
+		
+		.demo-table {   
+			border-collapse:collapse;
+			border-bottom:1px solid black;
+			width:100%;
+		}
+		 
+		.demo-table-header {
+			border-bottom:1px solid black;
+			background:none repeat scroll 0 0  #008a70;
+			padding:10px;
+		}
+		 
+		.demo-table-odd-row {
+			border-top:1px solid black;
+			background:none repeat scroll 0 0 #FFFFFFF;
+			text-align:center;
+		}
+		 
+		.demo-table-even-row {
+			border-top:1px solid black;
+			background:none repeat scroll 0 0 #D0D0D0;
+			text-align:center;
+		}
+		
+	</style>
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title> Filter</title>
+	
+      		<style>
+		* {
+			margin: 0;
+    		padding: 0;
+   			box-sizing: border-box;
+    		outline: 0;
+		}
+		
+		body {
+			background-image: linear-gradient(to right top, #0b4b90, #0065a0, #007a93, #008a70, #389644);
+		    background-attachment: fixed;
+		    background-size: cover;
+		}
+		
+		.container {
+		    max-width: 100rem;
+		    margin: 2rem auto;
+		    background-color: whitesmoke;
+		    padding: 2rem;
+		    border-radius: 1rem;
+		}
+		
+		.form input, .form label {
+		    margin: 0.5rem 0;
+		    display: block;
+		    width: 100%;
+		}
+		
+		.form label {
+		    font-size: 1.2rem;
+		}
+		
+		.save-button {
+		    width: 100%;
+		    height: 2rem;
+		    margin-bottom: 1rem;
+		    cursor: pointer;
+		    font-size: 1rem;
+
+		}
+		
+	</style>
+	
+</h:head>
+
+<h:body>
+	
+	<div class="container">
+
+		<div>
+			
+			<h2>FIltro de Tarefas</h2>
+			
+			<br/><br/>
+			
+			<h:messages globalOnly="true" />
+
+			<h:form class="form">
+
+				<h:dataTable value="#{tarefasController.tarefas}" var="tempTarefa" styleClass="demo-table" 
+				headerClass="demo-table-header" rowClasses="demo-table-odd-row,demo-table-even-row" >
+
+					<h:column>
+						<f:facet name="header">Título</f:facet>
+	        		#{tempTarefa.titulo}
+	        		</h:column>
+	
+					<h:column >
+						<f:facet name="header">Descrição</f:facet>
+	        		#{tempTarefa.descricao}
+	        		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Responsável</f:facet>
+	        		#{tempTarefa.responsavel}
+	        		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Prioridade</f:facet>
+	        		#{tempTarefa.prioridade}
+	        		</h:column>
+	        		
+	        		<h:column>
+						<f:facet name="header">Situacao</f:facet>
+	        		#{tempTarefa.situacao}
+	        		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Deadline</f:facet>
+	        		#{tempTarefa.deadline}
+	        		</h:column>
+
+				</h:dataTable>
+				
+				 <h:button class="back-button" value="Voltar para a lista" outcome="test_list"/>	 
+				 
+			</h:form>
+
+		</div>
+
+	</div>
+
+</h:body>
+</html>

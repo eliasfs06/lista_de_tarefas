@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{tarefasController.loadTarefas()}" />
+</f:metadata>
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title>Lista de Tarefas App</title>
+
+	<style>
+		* {
+			margin: 0;
+    		padding: 0;
+   			box-sizing: border-box;
+    		outline: 0;
+		}
+		
+		body {
+			background-image: linear-gradient(to right top, #0b4b90, #0065a0, #007a93, #008a70, #389644);
+		    background-attachment: fixed;
+		    background-size: cover;
+		}
+		
+		.container {
+		    max-width: 100rem;
+		    margin: 2rem auto;
+		    background-color: whitesmoke;
+		    padding: 2rem;
+		    border-radius: 1rem;
+		}
+		
+		.form input, .form label {
+		    margin: 0.5rem 0;
+		    display: block;
+		    width: 100%;
+		}
+		
+		.form label {
+		    font-size: 1.2rem;
+		}
+		
+		.add-button {
+		    width: 30%;
+		    height: 2rem;
+		    margin-bottom: 1rem;
+		    cursor: pointer;
+		    font-size: 1rem;
+
+		}
+		
+		.demo-table {   
+			border-collapse:collapse;
+			border-bottom:1px solid black;
+			width:100%;
+		}
+		 
+		.demo-table-header {
+			border-bottom:1px solid black;
+			background:none repeat scroll 0 0  #008a70;
+			padding:10px;
+		}
+		 
+		.demo-table-odd-row {
+			border-top:1px solid black;
+			background:none repeat scroll 0 0 #FFFFFFF;
+			text-align:center;
+		}
+		 
+		.demo-table-even-row {
+			border-top:1px solid black;
+			background:none repeat scroll 0 0 #D0D0D0;
+			text-align:center;
+		}
+		
+	</style>
+
+</h:head>
+
+<h:body>
+	
+	<div class="container">
+
+		<div>
+			
+			<h2>Lista de Tarefas</h2>
+			
+			<br/><br/>
+			
+			<h:messages globalOnly="true" />
+
+			<h:form class="form">
+
+				<h:dataTable value="#{tarefasController.tarefas}" var="tempTarefa" styleClass="demo-table" 
+				headerClass="demo-table-header" rowClasses="demo-table-odd-row,demo-table-even-row" >
+
+					<h:column>
+						<f:facet name="header">Título</f:facet>
+	        		#{tempTarefa.titulo}
+	        		</h:column>
+	
+					<h:column >
+						<f:facet name="header">Descrição</f:facet>
+	        		#{tempTarefa.descricao}
+	        		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Responsável</f:facet>
+	        		#{tempTarefa.responsavel}
+	        		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Prioridade</f:facet>
+	        		#{tempTarefa.prioridade}
+	        		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Deadline</f:facet>
+	        		#{tempTarefa.deadline}
+	        		</h:column>
+
+
+					<h:column>
+						<f:facet name="header">Action</f:facet>
+
+						<h:commandLink value="Concluir"
+							action="#{tarefasController.endTarefa(tempTarefa.id_tarefa)}" />
+						|
+						<h:commandLink value="Update"
+							action="#{tarefasController.loadTarefa(tempTarefa.id_tarefa)}" />
+						|
+						<h:commandLink value="Apagar"
+							onclick="if (!confirm('Você tem certeza que quer apagar essa tarefa?')) return false"
+							action="#{tarefasController.deleteTarefa(tempTarefa.id_tarefa)}" />
+
+					</h:column>						
+					
+				</h:dataTable>
+				
+				<h:button class="add-button" value="Adicionar tarefa" outcome="add_tarefa_form"/>	
+				
+				<br/><br/>
+				
+				<h2> Filtrar tarefas</h2>
+				
+				<h:outputLabel>Campo:</h:outputLabel> 
+				    <h:selectOneMenu value="#{tarefa.filtro_campo}">
+    					<f:selectItem itemValue="titulo" itemLabel="Título" />
+    					<f:selectItem itemValue="descricao" itemLabel="Descrição" />
+    					<f:selectItem itemValue="situacao" itemLabel="Situação" />
+    					<f:selectItem itemValue="deadline" itemLabel="Deadline" />
+    					<f:selectItem itemValue="responsavel" itemLabel="Responsável" />
+    					<f:selectItem itemValue="prioridade" itemLabel="Prioridade" />
+    				</h:selectOneMenu>
+				<h:outputLabel>Valor:</h:outputLabel> 
+				<h:inputText value="#{tarefa.filtro_valor}" id="filtro_valor"/>
+				<h:commandButton class="add-button" value="Filtrar" action="#{tarefasController.filterTarefas(tarefa.filtro_campo, tarefa.filtro_valor)}" />
+				
+				
+			</h:form>
+			
+		</div>
+
+	</div>
+
+</h:body>
+</html>
+
+
+
