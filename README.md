@@ -36,4 +36,4 @@ eliasfs0612@gmail.com
 - JavaScript (1.0)
 - JSF (2.3)
 
-2. Rodar o arquivo test_list.xthml no servidor local
+2. Rodar o arquivo test_list.xthml (/src/main/webapp/test_list.xthml) no servidor local
