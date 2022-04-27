@@ -1,7 +1,7 @@
 # Lista de Tarefas
 
 ## Descrição
-Projeto realizado como parte do processo seletivo para Estágio em desenvolvimento com Java;
+Projeto realizado como parte do processo seletivo para Estágio em desenvolvimento em Java;
 
 ## Autor
 Elias Farias da Silva
@@ -14,7 +14,7 @@ eliasfs0612@gmail.com
 4. IDE Eclipse
 
 ## Letras implementadas
-1. a) apliação Java web utilizando JSF
+1. a) aplicação Java web utilizando JSF
 2. b) persistência em banco PostgresSQL
 
 ## Funcionalidades implementadas
